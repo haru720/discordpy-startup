@@ -41,5 +41,9 @@ async def プロシュート(ctx):
 async def 汚物召喚(ctx):
     await ctx.send('心ある方々の前でアナルをパカパカ開示してイクぅぅぅう！！アハァアハァニチャァﾊﾟﾝﾊﾟﾝ')
 
+@bot.command()
+async def 山下は(ctx):
+    await ctx.send('うんこ！(なおどの山下とは言ってないのでセーフ)')
+
 bot.run(token)
 
