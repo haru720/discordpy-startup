@@ -1,12 +1,15 @@
-from discord.ext import commands
-import os
-import traceback
+import discord
 
-bot = commands.Bot(command_prefix='/')
-token = os.environ['DISCORD_BOT_TOKEN']
+client = discord.Client()
 
+@client.event
+async def on_ready():
+    print('Logged in as')
+    print(client.user.name)
+    print(client.user.id)
+    print('------')
 
-@bot.event
+@client.event
 async def on_message(message):
     # 「唐澤貴洋」で始まるか調べる
     if message.content.startswith("唐澤貴洋"):
@@ -36,5 +39,4 @@ async def on_message(message):
             m ="岐阜県大垣市笠縫町387-2、安藤あゆみ"
             await message.channel.send(m)
 
-
-bot.run(token)
+client.run("NzI2MzY4MTM5NTQ5NDc0ODE2.XvcS2w.j2rsJRiCNWPLP8bm1P_hnkbLlmk")
