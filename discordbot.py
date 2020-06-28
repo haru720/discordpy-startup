@@ -37,7 +37,9 @@ async def 脱糞(ctx):
 async def プロシュート(ctx):
     await ctx.send('神奈川県藤沢市辻堂元町2－19－19、稲村純一、葛飾商業高校中退')
     
-
+@bot.command()
+async def 汚物召喚(ctx):
+    await ctx.send('心ある方々の前でアナルをパカパカ開示してイクぅぅぅう！！アハァアハァニチャァﾊﾟﾝﾊﾟﾝ')
 
 bot.run(token)
 
