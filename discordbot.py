@@ -34,7 +34,7 @@ async def on_message(message):
     if message.content.startswith("あゆてやん"):
         if client.user != message.author:
             m ="岐阜県大垣市笠縫町387-2、安藤あゆみ"
-            await message.channel.send(m
+            await message.channel.send(m)
 
 
 bot.run(token)
