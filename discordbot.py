@@ -13,10 +13,6 @@ async def on_command_error(ctx, error):
     await ctx.send(error_msg)
 
 @bot.command()
-async def ping(ctx):
-    await ctx.send('pong')
-    
-@client.event
 async def on_message(message):
     # 「唐澤貴洋」で始まるか調べる
     if message.content.startswith("唐澤貴洋"):
@@ -45,6 +41,5 @@ async def on_message(message):
         if client.user != message.author:
             m ="岐阜県大垣市笠縫町387-2、安藤あゆみ"
             await message.channel.send(m)
-
 
 bot.run(token)
