@@ -14,7 +14,7 @@ async def on_ready():
     print('ログインしました')
 
 # メッセージ受信時に動作する処理
-@client.event
+
 async def on_message(message):
     # メッセージ送信者がBotだった場合は無視する
     if message.author.bot:
@@ -29,12 +29,10 @@ async def greet():
     channel = client.get_channel(CHANNEL_ID)
     await channel.send('起動')
 
-# bot起動時に実行されるイベントハンドラを定義
-@client.event
+
 async def on_ready():
     await greet() # 挨拶する非同期関数を実行
 
-@client.event
 async def on_message(message):
     if message.content == '/削除':
         if message.author.guild_permissions.administrator:
