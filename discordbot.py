@@ -1,49 +1,47 @@
-from discord.ext import commands
-import os
-import traceback
+# インストールした discord.py を読み込む
+import discord
 
-bot = commands.Bot(command_prefix='/')
-token = os.environ['DISCORD_BOT_TOKEN']
+# 自分のBotのアクセストークンに置き換えてください
+TOKEN = 'DISCORD_BOT_TOKEN'
 
+# 接続に必要なオブジェクトを生成
+client = discord.Client()
 
-@bot.event
-async def on_command_error(ctx, error):
-    orig_error = getattr(error, "original", error)
-    error_msg = ''.join(traceback.TracebackException.from_exception(orig_error).format())
-    await ctx.send(error_msg)
+# 起動時に動作する処理
+@client.event
+async def on_ready():
+    # 起動したらターミナルにログイン通知が表示される
+    print('ログインしました')
 
+# メッセージ受信時に動作する処理
+@client.event
+async def on_message(message):
+    # メッセージ送信者がBotだった場合は無視する
+    if message.author.bot:
+        return
+    if message.content == 'てすや':
+        await message.channel.send('当職は今日も元気ですを')
 
-@bot.command()
-async def ping(ctx):
-    await ctx.send('pong')
+CHANNEL_ID = 743788202543808583
 
-@bot.command()
-async def 椎名(ctx):
-    await ctx.send('福島県在住、武田彪、松韻学園福島高校、ホモビ男優')
+# 任意のチャンネルで挨拶する非同期関数を定義
+async def greet():
+    channel = client.get_channel(CHANNEL_ID)
+    await channel.send('起動')
 
-@bot.command()
-async def あゆてやん(ctx):
-    await ctx.send('岐阜県大垣市笠縫町387-2、安藤あゆみ')
-    
-@bot.command()
-async def てすや(ctx):
-    await ctx.send('て、てすやっ！？')
+# bot起動時に実行されるイベントハンドラを定義
+@client.event
+async def on_ready():
+    await greet() # 挨拶する非同期関数を実行
 
-@bot.command()
-async def 脱糞(ctx):
-    await ctx.send('あああああああああああああああああああああああああああああああ！！！！！！！！！！！（ﾌﾞﾘﾌﾞﾘﾌﾞﾘﾌﾞﾘｭﾘｭﾘｭﾘｭﾘｭﾘｭ！！！！！！ﾌﾞﾂﾁﾁﾌﾞﾌﾞﾌﾞﾁﾁﾁﾁﾌﾞﾘﾘｲﾘﾌﾞﾌﾞﾌﾞﾌﾞｩｩｩｩｯｯｯ！！！！！！！)')
+@client.event
+async def on_message(message):
+    if message.content == '/cleanup':
+        if message.author.guild_permissions.administrator:
+            await message.channel.purge()
+            await message.channel.send('ポアします')
+        else:
+            await message.channel.send('修行しなさい')
 
-@bot.command()
-async def プロシュート(ctx):
-    await ctx.send('神奈川県藤沢市辻堂元町2－19－19、稲村純一、葛飾商業高校中退')
-    
-@bot.command()
-async def 汚物召喚(ctx):
-    await ctx.send('心ある方々の前でアナルをパカパカ開示してイクぅぅぅう！！アハァアハァニチャァﾊﾟﾝﾊﾟﾝ')
-
-@bot.command()
-async def 山下は(ctx):
-    await ctx.send('うんこ！(なおどの山下とは言ってないのでセーフ)')
-
-bot.run(token)
-
+# Botの起動とDiscordサーバーへの接続
+client.run(TOKEN)
