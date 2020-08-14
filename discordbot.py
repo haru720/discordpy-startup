@@ -36,7 +36,7 @@ async def on_ready():
 
 @client.event
 async def on_message(message):
-    if message.content == '/福沢諭吉の名のもとに削除':
+    if message.content == '/削除':
         if message.author.guild_permissions.administrator:
             await message.channel.purge()
             await message.channel.send('ポアします')
