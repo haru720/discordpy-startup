@@ -1,1 +1,1 @@
-discordbot: python jukukobot.py
+discordbot: python discordbot.py
