@@ -11,6 +11,10 @@ client = discord.Client()
 async def greet():
     channel = client.get_channel(743788202543808583)
     await channel.send('起動')
+    
+@client.event
+async def on_ready():
+    await greet()
 
 
 
