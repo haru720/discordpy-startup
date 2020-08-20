@@ -296,12 +296,7 @@ async def on_message(message):
 
 # 起動時に動作する処理
 
-# bot起動時に実行されるイベントハンドラを定義
-@client.event
 
-async def on_ready():
-    print('ログイン')
-    await greet() # 挨拶する非同期関数を実行
 # メッセージ受信時に動作する処理
 
 
