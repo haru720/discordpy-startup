@@ -1,10 +1,6 @@
 import discord
 import os
 
-
-# 自分のBotのアクセストークンに置き換えてください
-TOKEN = DISCORD_BOT_TOKEN
-
 # 接続に必要なオブジェクトを生成
 client = discord.Client()
 
@@ -296,4 +292,4 @@ async def on_message(message):
 
         await message.channel.send("本校はヤスミが多く、高等学校としては法的にぎりぎりの日数しか授業がない、つまりあと数日でも授業日数が少ないと専門学校扱いになる…という都市伝説がある。選択旅行も授業日数に含まれるためらしい。ちなみに出席日数の如何によっては留年もありうる")
   
-client.run(TOKEN)
+client.run(os.environ.get('ENV_VAR_DISCORD_ID'))
